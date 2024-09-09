@@ -50,17 +50,24 @@ const pokemons = [
 
 const pokecont = document.querySelector('.pokemon-container');
 
+
 function displayPokemons() {
-    pokecont.innerHTML = " ";
-    if(!pokemons.length) {
-        pokemons.innerHTML = `<p>Dracaufeu a tout brûlé, aucun Pokémon ne correspond à ta recherche !</p>`;
+    pokecont.innerHTML = "";
+    if (!pokemons.length) {
+        pokecont.innerHTML += `<p>Dracaufeu a tout brûlé, aucun Pokémon ne correspond à ta recherche !</p>`;
         return;
     }
-
+    let contenuPoke = " ";
     for (let i = 0; i < pokemons.length; i++) {
-        pokecont.innerHTML += `<p>${pokemons.at(i).name}`;
+        contenuPoke += `<p>${pokemons.at(i).name}&nbsp;<small>${pokemons.at(i).type.split(",")[0]}</small>&nbsp;`;
+        // Deuxième type s'il existe
+        if (pokemons.at(i).type.split(",")[1]) {
+            contenuPoke += `<small>${pokemons.at(i).type.split(",")[1]}</small></p>`;
+        } else {
+            contenuPoke += `</p>`;
+        }
     }
+    pokecont.innerHTML += contenuPoke;  // Ajoute tout le contenu en une fois
 }
-
-
+//test
 displayPokemons();
