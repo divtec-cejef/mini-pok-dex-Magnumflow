@@ -1,6 +1,6 @@
 /**
  * Exercice : Mini Pokédex
- * @author Steve Fallet <steve.fallet@dvitec.ch>
+ * @author Diego Lovera
  * @since 2024-09-01
  */
 
@@ -47,3 +47,20 @@ const pokemons = [
     { name: 'Ronflex', type: 'Normal', level: 45, img: 'ronflex.png' },
     { name: 'Mewtwo', type: 'Psy', level: 70, img: 'mewtwo.png' }
 ];
+
+const pokecont = document.querySelector('.pokemon-container');
+
+function displayPokemons() {
+    pokecont.innerHTML = " ";
+    if(!pokemons.length) {
+        pokemons.innerHTML = `<p>Dracaufeu a tout brûlé, aucun Pokémon ne correspond à ta recherche !</p>`;
+        return;
+    }
+
+    for (let i = 0; i < pokemons.length; i++) {
+        pokecont.innerHTML += `<p>${pokemons.at(i).name}`;
+    }
+}
+
+
+displayPokemons();
