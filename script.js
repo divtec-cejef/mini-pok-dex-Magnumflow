@@ -57,17 +57,21 @@ function displayPokemons() {
         pokecont.innerHTML += `<p>Dracaufeu a tout brûlé, aucun Pokémon ne correspond à ta recherche !</p>`;
         return;
     }
-    let contenuPoke = " ";
-    for (let i = 0; i < pokemons.length; i++) {
-        contenuPoke += `<p>${pokemons.at(i).name}&nbsp;<small>${pokemons.at(i).type.split(",")[0]}</small>&nbsp;`;
-        // Deuxième type s'il existe
-        if (pokemons.at(i).type.split(",")[1]) {
-            contenuPoke += `<small>${pokemons.at(i).type.split(",")[1]}</small></p>`;
-        } else {
-            contenuPoke += `</p>`;
-        }
+    for (let index = 0; index < pokemons.length; index++) {
+        pokecont.innerHTML += generatePokemonCard(pokemons[index]);
     }
-    pokecont.innerHTML += contenuPoke;  // Ajoute tout le contenu en une fois
+}
+
+function generatePokemonCard(pokemons) {
+    //sachant qu'il y a seulement 2 type maximum, on va utiliser un tableau initialiser a 1 pour voir si il y a un deuxième type.
+    let contenuPoke = `<div class="pokemon-card" style="background: #705898;">
+        <img src="images/${pokemons.img}" alt="le poke ${pokemons.name}">
+        <h2>${pokemons.name}</h2><div>Type : ${pokemons.type.split(",", 1)}`;
+        if (pokemons.type.split(",")[1]) {
+            contenuPoke += `/ ${pokemons.type.split(",")[1]}`;
+        }
+    contenuPoke += `</div><div>Niveau : ${pokemons.level}</div></div>`
+    return contenuPoke;  // Ajoute tout le contenu en une fois
 }
 //test
 displayPokemons();
